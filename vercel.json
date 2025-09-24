@@ -2,11 +2,15 @@
   "version": 2,
   "routes": [
     {
-      "src": "/assets/(.*)",     // ✅ serve built assets normally
+      "src": "/assets/(.*)",   // ✅ serve JS/CSS files normally
       "dest": "/assets/$1"
     },
     {
-      "src": "/(.*)",            // ✅ fallback: everything else → index.html
+      "src": "/favicon.ico",   // ✅ serve favicon directly
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/(.*)",          // ✅ all other routes → index.html
       "dest": "/index.html"
     }
   ]
