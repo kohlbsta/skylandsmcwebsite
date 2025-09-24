@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "framework": "vite",
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/assets/(.*)",     // ✅ serve built assets normally
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",            // ✅ fallback: everything else → index.html
       "dest": "/index.html"
     }
   ]
