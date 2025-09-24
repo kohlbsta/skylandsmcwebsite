@@ -2,15 +2,15 @@
   "version": 2,
   "routes": [
     {
-      "src": "/assets/(.*)",   // ✅ serve JS/CSS files normally
+      "src": "/assets/(.*)",
       "dest": "/assets/$1"
     },
     {
-      "src": "/favicon.ico",   // ✅ serve favicon directly
+      "src": "/favicon.ico",
       "dest": "/favicon.ico"
     },
     {
-      "src": "/(.*)",          // ✅ all other routes → index.html
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ]
