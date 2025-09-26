@@ -121,6 +121,16 @@ export default function App() {
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
         <div className="text-center max-w-4xl mx-auto">
+          {/* Beta Announcement Banner */}
+          <div className="mb-6">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-2xl animate-pulse">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
+              </svg>
+              🎉 BETA OPEN NOW! 🎉
+            </div>
+          </div>
+
           {/* Main Logo/Title */}
           <div className="mb-8">
             <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 drop-shadow-2xl animate-bounce-slow">
