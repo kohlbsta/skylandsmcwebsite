@@ -1,7 +1,8 @@
 const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
-  content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"], // ✅ modern syntax
+  mode: "jit",
+  purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
@@ -36,5 +37,9 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  variants: {
+    extend: {
+      boxShadow: ["hover", "active"],
+    },
+  },
 };
