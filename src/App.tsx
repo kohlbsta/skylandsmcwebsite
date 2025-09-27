@@ -131,37 +131,43 @@ export default function App() {
         {/* Header Section */}
         <header className="pt-8 pb-4">
           <div className="container mx-auto px-6">
-            {/* Beta Badge */}
-            <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl animate-pulse">
-                <span className="w-2 h-2 bg-white rounded-full"></span>
-                🎉 BETA NOW LIVE 🎉
-                <span className="w-2 h-2 bg-white rounded-full"></span>
-              </div>
-            </div>
+
 
             {/* Logo/Title Section */}
-            <div className="text-center mb-12">
+            <div className="text-center mb-12 relative">
               {logoUrl ? (
-                <div className="mb-6">
+                <div className="mb-6 relative">
                   <img 
                     src={logoUrl} 
                     alt="SkyLandsMC Logo" 
-                    className="h-24 md:h-40 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+                    className="h-40 md:h-64 w-auto mx-auto drop-shadow-2xl hover:scale-105 transition-transform duration-300"
                   />
+
                 </div>
               ) : (
-                <h1 className="text-5xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 mb-6 drop-shadow-2xl">
-                  SkyLands<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">MC</span>
-                </h1>
+                <div className="relative">
+                  <h1 className="text-6xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 mb-6 drop-shadow-2xl leading-tight">
+                    SkyLands<span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-400">MC</span>
+                  </h1>
+
+                </div>
               )}
               
               <h2 className="text-xl md:text-3xl text-white font-bold mb-4 drop-shadow-lg">
                 The Ultimate Skyblock Experience
               </h2>
-              <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-base md:text-lg text-blue-100/80 max-w-2xl mx-auto leading-relaxed mb-6">
                 Build your island empire in the clouds. Trade, compete, and conquer the skies with friends.
               </p>
+              
+              {/* Beta Badge centered below description */}
+              <div className="flex justify-center">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-pink-500 text-white px-6 py-3 rounded-full font-bold text-lg shadow-xl animate-pulse">
+                  <span className="w-2 h-2 bg-white rounded-full"></span>
+                  🎉 BETA NOW LIVE 🎉
+                  <span className="w-2 h-2 bg-white rounded-full"></span>
+                </div>
+              </div>
             </div>
           </div>
         </header>
