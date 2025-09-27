@@ -107,7 +107,7 @@ export default function App() {
             playsInline
             preload="auto"
             crossOrigin="anonymous"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover"
             style={{
               willChange: 'auto',
               transform: 'translateZ(0)',
@@ -122,7 +122,6 @@ export default function App() {
           >
             <source src={backgroundVideo.url} type={backgroundVideo.type} />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70"></div>
         </div>
       )}
 
