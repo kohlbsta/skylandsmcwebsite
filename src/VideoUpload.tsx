@@ -2,7 +2,13 @@ import { useState, useRef } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../convex/_generated/api";
 
-export default function VideoUpload({ onUploadComplete }: { onUploadComplete?: () => void }) {
+export default function VideoUpload({ 
+  onUploadComplete, 
+  onClose 
+}: { 
+  onUploadComplete?: () => void;
+  onClose?: () => void;
+}) {
   const [isUploading, setIsUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -68,7 +74,6 @@ export default function VideoUpload({ onUploadComplete }: { onUploadComplete?: (
         type: file.type,
       });
 
-      alert('Video uploaded successfully! Refresh the page to see it as background.');
       onUploadComplete?.();
       
       // Reset file input
@@ -85,27 +90,44 @@ export default function VideoUpload({ onUploadComplete }: { onUploadComplete?: (
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50">
-      <div className="bg-black/50 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-        <h3 className="text-white font-bold mb-2">Upload Background Video</h3>
+    <div className="fixed top-16 left-4 z-50">
+      <div className="bg-black/80 backdrop-blur-sm rounded-lg p-6 border border-white/20 min-w-[300px]">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-white font-bold text-lg">Upload Background Video</h3>
+          {onClose && (
+            <button
+              onClick={onClose}
+              className="text-white hover:text-gray-300 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          )}
+        </div>
+        
         <input
           ref={fileInputRef}
           type="file"
           accept="video/*"
           onChange={handleVideoUpload}
           disabled={isUploading}
-          className="block w-full text-sm text-white
+          className="block w-full text-sm text-white mb-4
                      file:mr-4 file:py-2 file:px-4
                      file:rounded-full file:border-0
                      file:text-sm file:font-semibold
                      file:bg-blue-500 file:text-white
                      hover:file:bg-blue-600
-                     file:disabled:opacity-50"
+                     file:disabled:opacity-50
+                     file:cursor-pointer
+                     disabled:opacity-50"
         />
+        
         {isUploading && (
-          <div className="mt-2">
-            <div className="text-xs text-white mb-1">
-              Uploading... {Math.round(uploadProgress)}%
+          <div className="mb-4">
+            <div className="flex justify-between text-xs text-white mb-2">
+              <span>Uploading...</span>
+              <span>{Math.round(uploadProgress)}%</span>
             </div>
             <div className="w-full bg-gray-700 rounded-full h-2">
               <div 
@@ -115,9 +137,12 @@ export default function VideoUpload({ onUploadComplete }: { onUploadComplete?: (
             </div>
           </div>
         )}
-        <p className="text-xs text-gray-300 mt-2">
-          Max size: 50MB. Formats: MP4, WebM, MOV
-        </p>
+        
+        <div className="text-xs text-gray-300 space-y-1">
+          <p>• Max size: 50MB</p>
+          <p>• Formats: MP4, WebM, MOV</p>
+          <p>• Video will replace current background</p>
+        </div>
       </div>
     </div>
   );

@@ -43,3 +43,13 @@ export const getBackgroundVideo = query({
     };
   },
 });
+
+export const getLogo = query({
+  args: {},
+  handler: async (ctx) => {
+    // Get the specific logo image by storage ID
+    const logoStorageId = "kg263m7ej9d6s4q1jjkkswwqsn7rcbd2" as any;
+    const url = await ctx.storage.getUrl(logoStorageId);
+    return url;
+  },
+});
