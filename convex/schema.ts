@@ -9,6 +9,12 @@ const applicationTables = {
     type: v.string(),
     isBackground: v.boolean(),
   }),
+  voteLinks: defineTable({
+    name: v.string(),
+    url: v.string(),
+    description: v.optional(v.string()),
+    order: v.number(),
+  }).index("by_order", ["order"]),
 };
 
 export default defineSchema({

@@ -2,6 +2,7 @@ import { Toaster, toast } from "sonner";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 import { useEffect, useState } from "react";
+import VotePage from "./VotePage";
 
 interface ServerStatus {
   online: boolean;
@@ -16,6 +17,7 @@ interface ServerStatus {
 }
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
   const [serverStatus, setServerStatus] = useState<ServerStatus | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -94,6 +96,11 @@ export default function App() {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Show vote page if currentPage is "vote"
+  if (currentPage === "vote") {
+    return <VotePage onNavigateHome={() => setCurrentPage("home")} />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
@@ -259,6 +266,24 @@ export default function App() {
                 </p>
               </div>
 
+              {/* Vote Button */}
+              <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl">
+                <h4 className="text-xl font-bold text-white mb-4 text-center">Vote</h4>
+                <button
+                  onClick={() => setCurrentPage("vote")}
+                  className="w-full group relative bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 hover:from-yellow-600 hover:via-orange-600 hover:to-red-600 text-white font-bold py-4 px-6 rounded-xl shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center space-x-3 overflow-hidden"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+                  <svg className="w-6 h-6 group-hover:bounce relative z-10" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clipRule="evenodd" />
+                  </svg>
+                  <span className="text-lg relative z-10">Vote Now</span>
+                </button>
+                <p className="text-blue-200/80 text-sm text-center mt-3">
+                  Support us & earn rewards!
+                </p>
+              </div>
+
               {/* Discord Button */}
               <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl">
                 <h4 className="text-xl font-bold text-white mb-4 text-center">Community</h4>
@@ -276,7 +301,6 @@ export default function App() {
                   Chat with players & get support
                 </p>
               </div>
-
 
 
 
